@@ -2,7 +2,7 @@ require 'faraday'
 
 module Luminati
   class Client
-    attr_accessor :username, :password, :zone, :port, :urls
+    attr_accessor :username, :password, :zone, :port, :urls, :regexes
     
     def initialize(username, password, zone: :gen, port: 22225)
       self.username   =   username
@@ -13,6 +13,10 @@ module Luminati
       
       self.urls       =   {
         master_proxy: "http://client.luminati.io/api/get_super_proxy"
+      }
+      
+      self.regexes    =   {
+        failed_auth: /failed\sauth/i
       }
     end
     
@@ -38,20 +42,16 @@ module Luminati
     def fetch_master_proxy(country: nil)
       arguments       =   {raw:  1}
       arguments.merge!(country: country) if country
-      
-      response        =   get_response(self.urls[:master_proxy], arguments)
-      proxy           =   (response && response.body) ? response.body : nil
+      proxy           =   get_response(self.urls[:master_proxy], arguments)
     end
     
     def fetch_master_proxies(limit: 10)
       arguments       =   {format: :json, limit: limit}
-      response        =   get_response(self.urls[:master_proxy], arguments)
-      proxies         =   (response && response.body) ? response.body : nil
+      proxies         =   get_response(self.urls[:master_proxy], arguments)
     end
     
     def ping_master_proxy(address, port: self.port)
       response        =   get_response("http://#{address}:#{port}/ping")
-      return (response && response.body) ? response.body : nil
     end
     
     def ping_master_proxies(proxies, port: self.port)
@@ -70,7 +70,7 @@ module Luminati
     end
     
     def format_username(username)
-      username   =   (username =~ /-zone-([a-z0-9]*)/i).nil? ? "#{username}-zone-#{self.zone}" : username
+      username        =   (username =~ /-zone-([a-z0-9]*)/i).nil? ? "#{username}-zone-#{self.zone}" : username
     end
     
     def get_response(url, arguments = {}, options = {})
@@ -78,8 +78,17 @@ module Luminati
       
       connection      =   build_connection(options)
       response        =   connection.get(url, arguments)
+      response        =   (response && response.body) ? response.body : nil
+      
+      check_response_for_errors(response)
       
       return response
+    end
+    
+    def check_response_for_errors(response)
+      if (response && response.is_a?(String) && response.present?)
+        raise Luminati::FailedAuthError, "Failed to authenticate your account with Luminati.io. Please check your credentials or the contract for your account." if response =~ self.regexes[:failed_auth]
+      end
     end
     
     def build_connection(options = {})
