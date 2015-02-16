@@ -7,6 +7,7 @@ Add it to your Gemfile:
 gem 'luminati'
 ```
 
+Basic example:
 ```ruby
 luminati        =   Luminati::Client.new('username', 'password', zone: 'gen', port: 22225)
 connection      =   luminati.get_connection(country: nil, dns_resolution: nil, session: nil)
