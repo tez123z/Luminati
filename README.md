@@ -2,6 +2,11 @@
 Ruby-wrapper for communicating with the Luminati.io-network.
 
 ## How to use the wrapper
+Add it to your Gemfile:
+```ruby
+gem 'luminati'
+```
+
 ```ruby
 luminati        =   Luminati::Client.new('username', 'password', zone: 'gen', port: 22225)
 connection      =   luminati.get_connection(country: nil, dns_resolution: nil, session: nil)
