@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    luminati (0.0.2)
+    luminati (0.0.3)
       faraday (>= 0.9)
       faraday_middleware (>= 0.9)
 
