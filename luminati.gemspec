@@ -3,7 +3,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 1.3.5") if s.respond_to? :required_rubygems_version=
 
   s.name = 'luminati'
-  s.version = '0.0.2'
+  s.version = '0.0.3'
 
   s.homepage      =   "https://github.com/Agiley/Luminati"
   s.email         =   "sebastian@agiley.se"
