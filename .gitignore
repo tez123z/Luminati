@@ -34,3 +34,6 @@ build/
 .rvmrc
 .ruby-version
 .ruby-gemset
+
+# ignore real credentials to successfully perform tests
+spec/luminati/credentials.yml

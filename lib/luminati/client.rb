@@ -1,4 +1,5 @@
 require 'faraday'
+require 'faraday_middleware'
 
 module Luminati
   class Client
@@ -86,7 +87,7 @@ module Luminati
     end
     
     def check_response_for_errors(response)
-      if (response && response.is_a?(String) && response.present?)
+      if (response && response.is_a?(String) && !response.empty?)
         raise Luminati::FailedAuthError, "Failed to authenticate your account with Luminati.io. Please check your credentials or the contract for your account." if response =~ self.regexes[:failed_auth]
       end
     end

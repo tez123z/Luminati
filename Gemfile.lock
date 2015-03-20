@@ -1,8 +1,9 @@
 PATH
   remote: .
   specs:
-    Luminati (0.0.1)
+    luminati (0.0.2)
       faraday (>= 0.9)
+      faraday_middleware (>= 0.9)
 
 GEM
   remote: http://rubygems.org/
@@ -10,6 +11,8 @@ GEM
     diff-lcs (1.2.5)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
+    faraday_middleware (0.9.1)
+      faraday (>= 0.7.4, < 0.10)
     metaclass (0.0.4)
     mocha (1.1.0)
       metaclass (~> 0.0.1)
@@ -19,21 +22,21 @@ GEM
       rspec-core (~> 3.2.0)
       rspec-expectations (~> 3.2.0)
       rspec-mocks (~> 3.2.0)
-    rspec-core (3.2.0)
+    rspec-core (3.2.2)
       rspec-support (~> 3.2.0)
     rspec-expectations (3.2.0)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.2.0)
-    rspec-mocks (3.2.0)
+    rspec-mocks (3.2.1)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.2.0)
-    rspec-support (3.2.1)
+    rspec-support (3.2.2)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  Luminati!
+  luminati!
   mocha
   rake
   rspec
