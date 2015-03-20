@@ -32,4 +32,6 @@ connection      =   luminati.get_connection(country: 'us', dns_resolution: :remo
 ```
 
 ## Test coverage
-Currently missing, will be added later.
+Initial test coverage has since 2015-03-20 been added.
+
+More tests will be added continously.

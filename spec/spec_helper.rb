@@ -24,3 +24,5 @@ require File.expand_path('../../lib/luminati', __FILE__)
 RSpec.configure do |config|
   config.mock_with :mocha
 end
+
+CREDENTIALS = YAML.load_file(File.join(File.dirname(__FILE__), "/support/credentials.yml"))

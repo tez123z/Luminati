@@ -17,7 +17,8 @@ module Luminati
       }
       
       self.regexes    =   {
-        failed_auth: /failed\sauth/i
+        failed_auth:    /failed\sauth/i,
+        invalid_params: /invalid\sparams/i
       }
     end
     
@@ -89,6 +90,7 @@ module Luminati
     def check_response_for_errors(response)
       if (response && response.is_a?(String) && !response.empty?)
         raise Luminati::FailedAuthError, "Failed to authenticate your account with Luminati.io. Please check your credentials or the contract for your account." if response =~ self.regexes[:failed_auth]
+        raise Luminati::InvalidParamsError, "Failed to perform your requested action since invalid parameters were supplied." if response =~ self.regexes[:invalid_params]
       end
     end
     

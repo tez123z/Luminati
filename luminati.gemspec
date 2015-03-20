@@ -29,6 +29,7 @@ Gem::Specification.new do |s|
  lib/luminati/client.rb
  lib/luminati/errors.rb
  luminati.gemspec
+ spec/luminati/client_spec.rb
  spec/spec_helper.rb
  ]
  # = MANIFEST =
