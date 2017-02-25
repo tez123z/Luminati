@@ -11,8 +11,8 @@ Gem::Specification.new do |s|
   s.description   =   "Ruby-wrapper for communicating with the Luminati.io-network."
   s.summary       =   "Ruby-wrapper for communicating with the Luminati.io-network."
 
-  s.add_dependency "faraday",             ">= 0.9"
-  s.add_dependency "faraday_middleware",  ">= 0.9"
+  s.add_dependency "faraday",             "= 0.8.8"
+  s.add_dependency "faraday_middleware",  "= 0.8.8"
 
   s.add_development_dependency 'rake'
   s.add_development_dependency 'rspec'
